@@ -4,17 +4,17 @@
 
 ---
 
-## ROTEIRO ==(leitura rápida)==
+## ROTEIRO <mark>(leitura rápida)</mark>
 
-### ==Premissa==
-==Sim. Todo autista tem superpoder.==
+### <mark>Premissa</mark>
+<mark>Sim. Todo autista tem superpoder.<mark/>
 
 ---
 
-### ==Beat 1 — Heróis==
-==Os autistas são tipo os X-Men...==  
-==...a Liga da Justiça...==  
-==...os Vingadores.==
+### <mark>Beat 1 — Heróis<mark/>
+<mark>Os autistas são tipo os X-Men...<mark/>  
+<mark>...a Liga da Justiça...<mark/>  
+<mark>...os Vingadores.<mark/>
 
 <details>
 <summary>Ações / Ritmo (opcional)</summary>
@@ -26,9 +26,9 @@
 
 ---
 
-### ==Beat 2 — Rebaixamento==
-==Claro que não é olho laser nem garra saindo do punho.==  
-==São superpoderes mais discretos...==
+### <mark>Beat 2 — Rebaixamento<mark>
+<mark>Claro que não é olho laser nem garra saindo do punho.<mark/>  
+<mark>São superpoderes mais discretos...<mark/>
 
 <details>
 <summary>Ações / Intenção (opcional)</summary>
@@ -39,10 +39,10 @@
 
 ---
 
-### ==Beat 3 — Sindicato==
-==Alguns ainda não obedecem ao sindicato dos autistas...==  
-==...montam cubo mágico em 5 segundos, vendado, ouvindo brega funk.==  
-==Tudo combinando perfeitamente.==
+### <mark>Beat 3 — Sindicato<mark>
+<mark>Alguns ainda não obedecem ao sindicato dos autistas...</mark>  
+<mark>...montam cubo mágico em 5 segundos, vendado, ouvindo brega funk.</mark>  
+<mark>Tudo combinando perfeitamente.</mark>
 
 <details>
 <summary>Hook (opcional)</summary>
@@ -53,8 +53,8 @@
 
 ---
 
-### ==Beat 4 — Meu poder==
-==O meu superpoder é a adaptação social.==
+### <mark>Beat 4 — Meu poder<mark>
+<mark>O meu superpoder é a adaptação social.</mark>
 
 <details>
 <summary>Ações / Act-out (opcional)</summary>
@@ -68,10 +68,10 @@
 
 ---
 
-### ==Beat 5 — Punch==
-==Sou bom nisso?==  
-==*(balanço a cabeça: não)*==  
-==Sou péssimo. Mas funciona.==
+### <mark>Beat 5 — Punch</mark>
+<mark>Sou bom nisso?</mark>  
+<mark>*(balanço a cabeça: não)*</mark>  
+<mark>Sou péssimo. Mas funciona.</mark>
 
 <details>
 <summary>Ritmo (opcional)</summary>
