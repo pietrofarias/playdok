@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document
+    id="PA-ADAPT-001"
+    guid="2f2d2a3e-3f8c-4d9f-9f2f-3a8f8f1b6d10"
+    schemaVersion="0.2"
+    xml:lang="pt-BR">
+
+    <!-- =========================
+       LINHAGEM (obrigatório)
+       ========================= -->
+    <lineage>
+        <originRepositoryId>playdok-schema-main</originRepositoryId>
+        <rootDocumentGuid>2f2d2a3e-3f8c-4d9f-9f2f-3a8f8f1b6d10</rootDocumentGuid>
+        <!-- parentDocumentGuid só quando for fork -->
+        <!-- <parentDocumentGuid>...</parentDocumentGuid> -->
+        <!-- forkGuid só quando existir evento de fork -->
+        <!-- <forkGuid>...</forkGuid> -->
+        <originPath>/documents/PA-ADAPT-001/document.xml</originPath>
+        <!-- lineageProof é opcional (ex.: futura âncora blockchain) -->
+    </lineage>
+
+    <!-- =========================
+       METADADOS (mínimos)
+       ========================= -->
+    <title>Autistas têm superpoderes (Meu poder: adaptação)</title>
+
+    <author id="AUTH-PIETRO-0001">
+        <name>Pietro</name>
+        <handle>@pietro</handle>
+    </author>
+
+    <created>2026-02-08T10:45:00-03:00</created>
+
+    <description>
+        Texto encenável (stand-up) com camadas de intenção: beats, pausas e act-outs.
+        A leitura humana principal está em printView (Markdown), com destaques usando == ==.
+    </description>
+
+    <tags>
+        <tag>standup</tag>
+        <tag>autismo</tag>
+        <tag>superpoder</tag>
+        <tag>adaptação</tag>
+        <tag>beat</tag>
+        <tag>actout</tag>
+    </tags>
+
+    <!-- =========================
+       VISUALIZAÇÃO (obrigatório)
+       ========================= -->
+    <printView format="markdown"><![CDATA[
+# PA-ADAPT-001 — Autistas têm superpoderes
+**Autor:** Pietro  
+**Tags:** #autismo #superpoder #adaptação
+
+---
+
+## ROTEIRO ==(leitura rápida)==
+
+### ==Premissa==
+==Sim. Todo autista tem superpoder.==
+
+---
+
+### ==Beat 1 — Heróis==
+==Os autistas são tipo os X-Men...==  
+==...a Liga da Justiça...==  
+==...os Vingadores.==
+
+<details>
+<summary>Ações / Ritmo (opcional)</summary>
+
+- Gestos de herói em 3 batidas (X-Men / Liga / Vingadores)
+- ⏸️ 1s entre as batidas
+
+</details>
+
+---
+
+### ==Beat 2 — Rebaixamento==
+==Claro que não é olho laser nem garra saindo do punho.==  
+==São superpoderes mais discretos...==
+
+<details>
+<summary>Ações / Intenção (opcional)</summary>
+
+- Quebra o épico e aproxima do microfone como confidência
+
+</details>
+
+---
+
+### ==Beat 3 — Sindicato==
+==Alguns ainda não obedecem ao sindicato dos autistas...==  
+==...montam cubo mágico em 5 segundos, vendado, ouvindo brega funk.==  
+==Tudo combinando perfeitamente.==
+
+<details>
+<summary>Hook (opcional)</summary>
+
+- Hook: **Sindicato dos autistas** (gancho para callback / outro documento)
+
+</details>
+
+---
+
+### ==Beat 4 — Meu poder==
+==O meu superpoder é a adaptação social.==
+
+<details>
+<summary>Ações / Act-out (opcional)</summary>
+
+- Corpo em constante ajuste
+- Mudança de postura, tom e ritmo
+- Reação ao ambiente
+- Exagero do esforço invisível
+
+</details>
+
+---
+
+### ==Beat 5 — Punch==
+==Sou bom nisso?==  
+==*(balanço a cabeça: não)*==  
+==Sou péssimo. Mas funciona.==
+
+<details>
+<summary>Ritmo (opcional)</summary>
+
+- ⏸️ Pausa antes do “não”: 1s (testar 2s para mais tensão)
+
+</details>
+]]></printView>
+
+    <!-- =========================
+       PREMISSA (estruturado)
+       ========================= -->
+    <premisse>
+        <toViewer index="0" />
+        <text index="0">Sim. Todo autista tem superpoder.</text>
+        <pause index="0">2</pause>
+    </premisse>
+
+    <!-- =========================
+       LINHA DO TEMPO (estruturado)
+       ========================= -->
+    <timeline>
+
+        <beat id="B001" index="1">
+            <toViewer index="1" />
+            <text index="0">Os autistas são tipo os X-Men...</text>
+            <pause index="0">1</pause>
+            <text index="1">...a Liga da Justiça...</text>
+            <pause index="1">1</pause>
+            <text index="2">...os Vingadores.</text>
+            <pause index="2">1</pause>
+
+            <before index="0">Postura confiante; olhar “revelação importante”.</before>
+
+            <actout>
+                <item>Gestos de super-herói exagerados, curtos, em sequência</item>
+                <item>Ritmo em “três batidas” (X-Men / Liga / Vingadores)</item>
+            </actout>
+
+            <notes>
+                <note type="setup">Elevar o “crédito de poder” antes de puxar a autoironia.</note>
+            </notes>
+        </beat>
+
+        <beat id="B002" index="2">
+            <toViewer index="2" />
+            <text index="0">Claro que não é olho laser nem garra saindo do punho.</text>
+            <text index="1">São superpoderes mais discretos…</text>
+
+            <before index="0">Baixa o tom; aproxima do microfone como “confidência”.</before>
+
+            <actout>
+                <item>Mudança de energia: do épico para o íntimo</item>
+            </actout>
+
+            <notes>
+                <note type="setup">Transição do fantástico para a realidade (rebaixamento cômico).</note>
+            </notes>
+        </beat>
+
+        <beat id="B003" index="3">
+            <toViewer index="3" />
+            <text index="0">Alguns ainda não obedecem ao sindicato dos autistas…</text>
+            <text index="1">…montam cubo mágico em 5 segundos, vendado, ouvindo brega funk.</text>
+            <text index="2">Tudo combinando perfeitamente.</text>
+
+            <hook id="H001">
+                <name>Sindicato dos autistas</name>
+                <description>Gancho para callback / expansão em outro documento.</description>
+            </hook>
+
+            <actout>
+                <item>Imitar alguém “vendado” mexendo as mãos freneticamente</item>
+                <item>“Fone gigante” com cabeça balançando no ritmo</item>
+            </actout>
+
+            <notes>
+                <note type="tag">Hook para futura expansão.</note>
+            </notes>
+        </beat>
+
+        <beat id="B004" index="4">
+            <toViewer index="4" />
+            <text index="0">O meu superpoder é a adaptação social.</text>
+
+            <before index="0">Respira; “assume” o próprio poder como quem entrega a verdade.</before>
+
+            <actout>
+                <item>Corpo em constante ajuste</item>
+                <item>Mudança de postura, tom e ritmo</item>
+                <item>Olhar em volta e reagir ao ambiente</item>
+                <item>Exagerar o esforço invisível</item>
+            </actout>
+
+            <notes>
+                <note type="setup">O act-out é o “show” do poder.</note>
+            </notes>
+        </beat>
+
+        <beat id="B005" index="5">
+            <toViewer index="5" />
+            <text index="0">Sou bom nisso?</text>
+            <pause index="0">1</pause>
+
+            <after index="0">Balançar a cabeça “não”, seco. Segurar silêncio se vier riso.</after>
+
+            <notes>
+                <note type="punch">“Poder” vira incompetência — mas eficaz.</note>
+            </notes>
+        </beat>
+
+    </timeline>
+
+</document>

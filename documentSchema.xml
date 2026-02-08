@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<documentSchema
+  schemaId="PLAYDOK-SCHEMA-0001"
+  schemaVersion="0.1"
+  xml:lang="pt-BR"
+  targetRootElement="document"
+  purpose="Define um schema aberto para documentos narrativos e encenáveis (roteiros, stand-up, poesia performática, etc.), mantendo leitura simples via printView (Markdown) e estrutura técnica para análise.">
+
+  <!--
+    PLAYDOK (nome provisório)
+    - Este repositório define um SCHEMA (não uma aplicação).
+    - Backends podem armazenar/validar XMLs seguindo este schema.
+    - Frontends podem renderizar printView (Markdown) e/ou navegar na estrutura (beats, ações, intenção).
+    - Histórico de commits, comentários e repositório git NÃO ficam no document.xml (outro serviço).
+    - A linhagem mínima (origem/fork) fica no document.xml para rastreabilidade e futuras provas (ex.: blockchain).
+  -->
+
+  <!-- =========================
+       CONCEITOS
+       ========================= -->
+  <concepts>
+    <concept name="document">
+      <definition>
+        Artefato criativo encenável e visualizável fisicamente (palco, vídeo, teatro, comercial, etc.).
+        O document descreve texto, ações e intenção do autor, mas também deve permitir leitura simples via printView.
+      </definition>
+      <viewerContract>
+        <item>Todo document DEVE conter &lt;printView format="markdown"&gt; como contrato de leitura humana.</item>
+        <item>Itens técnicos podem existir no XML, mas não precisam ser renderizados.</item>
+      </viewerContract>
+    </concept>
+
+    <concept name="printView">
+      <definition>
+        Representação imprimível e legível (Markdown) do roteiro, destacando o essencial.
+        Itens importantes podem ser destacados usando ==texto==.
+      </definition>
+      <constraints>
+        <item>Conteúdo deve estar em CDATA.</item>
+        <item>Deve ser renderizável por qualquer Markdown viewer (ex.: GitHub).</item>
+        <item>Pode conter HTML compatível com Markdown (ex.: &lt;details&gt;) para ocultar camadas (ações/intenção).</item>
+      </constraints>
+    </concept>
+
+    <concept name="timeline/beat">
+      <definition>
+        Sequência ordenada de unidades de performance. Cada beat representa um ponto percebido pelo público (toViewer).
+      </definition>
+      <constraints>
+        <item>beat DEVE ter atributo index para ordenação.</item>
+        <item>beat id é recomendado para referência local (ex.: B001).</item>
+      </constraints>
+    </concept>
+
+    <concept name="lineage">
+      <definition>
+        Linhagem mínima do documento (origem/fork). Não armazena commits; guarda apenas referências para que outro serviço
+        (git, indexador, blockchain) resolva a cadeia completa.
+      </definition>
+    </concept>
+  </concepts>
+
+  <!-- =========================
+       ROOT: document
+       ========================= -->
+  <rootElement name="document">
+    <attributes>
+      <attribute name="id" type="string" required="true" rule="humanReadableId" example="PA-ADAPT-001"/>
+      <attribute name="guid" type="guid" required="true" rule="uuidV4" example="2f2d2a3e-3f8c-4d9f-9f2f-3a8f8f1b6d10"/>
+      <attribute name="schemaVersion" type="string" required="true" example="0.1"/>
+      <attribute name="xml:lang" type="string" required="false" example="pt-BR"/>
+    </attributes>
+
+    <requiredChildren>
+      <child name="lineage"/>
+      <child name="title"/>
+      <child name="author"/>
+      <child name="created"/>
+      <child name="printView"/>
+    </requiredChildren>
+
+    <optionalChildren>
+      <child name="description"/>
+      <child name="tags"/>
+      <child name="dramaturgicalFunction"/>
+      <child name="centralTheme"/>
+      <child name="archetypeUsed"/>
+      <child name="premisse"/>
+      <child name="timeline"/>
+    </optionalChildren>
+  </rootElement>
+
+  <!-- =========================
+       lineage (obrigatório)
+       ========================= -->
+  <element name="lineage" parent="document" required="true">
+    <description>
+      Vincula o documento à origem canônica e permite rastrear forks.
+      Este bloco é mínimo e não substitui histórico de commits.
+    </description>
+    <children>
+      <child name="originRepositoryId" required="true" type="string" example="repo-guid-ou-slug"/>
+      <child name="rootDocumentGuid" required="true" type="guid" example="guid-do-documento-raiz-da-linhagem"/>
+      <child name="parentDocumentGuid" required="false" type="guid" example="guid-do-documento-pai-imediato-se-fork"/>
+      <child name="forkGuid" required="false" type="guid" example="guid-do-evento-de-fork-se-existir"/>
+      <child name="originPath" required="false" type="string" example="/documents/PA-ADAPT-001/document.xml"/>
+      <child name="lineageProof" required="false"/>
+    </children>
+  </element>
+
+  <element name="lineageProof" parent="lineage" required="false">
+    <description>
+      Provas/âncoras opcionais para verificação externa (ex.: blockchain).
+      Estrutura agnóstica: reserva campos sem impor tecnologia.
+    </description>
+    <children>
+      <child name="commitHeadRef" required="false" type="string" example="hash_do_commit_head_no_repo_publico"/>
+      <child name="merkleRoot" required="false" type="string" example="merkle_root_da_cadeia_de_registros"/>
+      <child name="blockchain" required="false"/>
+    </children>
+  </element>
+
+  <element name="blockchain" parent="lineageProof" required="false">
+    <children>
+      <child name="network" required="false" type="string" example="ethereum|polygon|bitcoin|private"/>
+      <child name="transactionId" required="false" type="string" example="tx_hash"/>
+      <child name="anchoredAt" required="false" type="string" example="2026-02-08T12:00:00-03:00"/>
+    </children>
+  </element>
+
+  <!-- =========================
+       author (obrigatório)
+       ========================= -->
+  <element name="author" parent="document" required="true">
+    <attributes>
+      <attribute name="id" type="string" required="false" example="AUTH-PIETRO-0001"/>
+    </attributes>
+    <children>
+      <child name="name" required="true" type="string"/>
+      <child name="handle" required="false" type="string" example="@pietro"/>
+    </children>
+  </element>
+
+  <!-- =========================
+       tags (opcional)
+       ========================= -->
+  <element name="tags" parent="document" required="false">
+    <children>
+      <child name="tag" required="false" type="string" repeat="unbounded"/>
+    </children>
+  </element>
+
+  <!-- =========================
+       printView (obrigatório)
+       ========================= -->
+  <element name="printView" parent="document" required="true">
+    <attributes>
+      <attribute name="format" type="string" required="true" allowed="markdown" example="markdown"/>
+    </attributes>
+    <content type="cdata" required="true"/>
+    <renderingGuidance>
+      <item>Deve privilegiar leitura rápida (roteiro simples).</item>
+      <item>Itens essenciais ao leitor podem ser destacados com == ==.</item>
+      <item>Ações/intenção podem estar em &lt;details&gt; para ficarem ocultas por padrão.</item>
+    </renderingGuidance>
+  </element>
+
+  <!-- =========================
+       premisse (opcional)
+       ========================= -->
+  <element name="premisse" parent="document" required="false">
+    <children>
+      <child name="toViewer" required="true" type="emptyElementWithIndexAttr"/>
+      <child name="text" required="true" type="indexedString"/>
+      <child name="pause" required="false" type="indexedNumberSeconds"/>
+    </children>
+  </element>
+
+  <!-- =========================
+       timeline / beat (opcional)
+       ========================= -->
+  <element name="timeline" parent="document" required="false">
+    <children>
+      <child name="beat" required="true" repeat="unbounded"/>
+    </children>
+  </element>
+
+  <element name="beat" parent="timeline" required="true">
+    <attributes>
+      <attribute name="id" type="string" required="false" example="B001"/>
+      <attribute name="index" type="integer" required="true" example="1"/>
+    </attributes>
+    <children>
+      <child name="toViewer" required="true" type="emptyElementWithIndexAttr"/>
+      <child name="text" required="false" type="indexedString" repeat="unbounded"/>
+      <child name="pause" required="false" type="indexedNumberSeconds" repeat="unbounded"/>
+      <child name="before" required="false" type="indexedString"/>
+      <child name="after" required="false" type="indexedString"/>
+      <child name="actout" required="false"/>
+      <child name="hook" required="false"/>
+      <child name="notes" required="false"/>
+    </children>
+  </element>
+
+  <element name="actout" parent="beat" required="false">
+    <children>
+      <child name="item" required="true" type="string" repeat="unbounded"/>
+    </children>
+  </element>
+
+  <element name="hook" parent="beat" required="false">
+    <attributes>
+      <attribute name="id" type="string" required="false" example="H001"/>
+    </attributes>
+    <children>
+      <child name="name" required="true" type="string"/>
+      <child name="description" required="false" type="string"/>
+    </children>
+  </element>
+
+  <element name="notes" parent="beat" required="false">
+    <children>
+      <child name="note" required="true" repeat="unbounded"/>
+    </children>
+  </element>
+
+  <element name="note" parent="notes" required="true">
+    <attributes>
+      <attribute name="type" type="string" required="false" example="setup|punch|tag|alt|intent"/>
+    </attributes>
+    <content type="string" required="true"/>
+  </element>
+
+  <!-- =========================
+       LISTAS SIMPLES (opcional)
+       ========================= -->
+  <element name="dramaturgicalFunction" parent="document" required="false">
+    <children>
+      <child name="item" required="true" type="string" repeat="unbounded"/>
+    </children>
+  </element>
+
+  <element name="centralTheme" parent="document" required="false">
+    <children>
+      <child name="item" required="true" type="string" repeat="unbounded"/>
+    </children>
+  </element>
+
+  <element name="archetypeUsed" parent="document" required="false">
+    <children>
+      <child name="item" required="true" type="string" repeat="unbounded"/>
+    </children>
+  </element>
+
+  <!-- =========================
+       TIPOS REUTILIZÁVEIS
+       ========================= -->
+  <types>
+    <type name="guid" description="UUID v4 em formato texto"
+          pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+    <type name="indexedString" description="Elemento com atributo index e conteúdo texto">
+      <example><![CDATA[<text index="0">Exemplo</text>]]></example>
+    </type>
+    <type name="indexedNumberSeconds" description="Elemento com atributo index e conteúdo numérico (segundos)">
+      <example><![CDATA[<pause index="0">2</pause>]]></example>
+    </type>
+    <type name="emptyElementWithIndexAttr" description="Elemento vazio com atributo index">
+      <example><![CDATA[<toViewer index="1"/>]]></example>
+    </type>
+    <type name="humanReadableId" description="ID legível humano (prefixos por tipo + numeração)"
+          pattern="^[A-Z]{2,8}-[A-Z0-9]{2,16}-[0-9]{3}$"/>
+    <type name="uuidV4" description="Alias para guid"/>
+  </types>
+
+</documentSchema>
